@@ -3,7 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,6 +20,7 @@ public class Main {
 		while(st.hasMoreTokens()) {
 			list.add(Integer.parseInt(st.nextToken()));
 		}
+		list.sort(Comparator.naturalOrder());
 		
 		int checkNums = checkNums(list);
 		System.out.println(calMoney(checkNums, list));
@@ -27,23 +30,14 @@ public class Main {
 	// 몇 개가 같은지 검사하는 메서드
 	public static int checkNums(List<Integer> list) {
 		int cnt = 1;
-		if(list.get(0) == list.get(1)) {
-			cnt++;
-			if(list.get(0) == list.get(2)) {
-				cnt++;
-			}
-		} else if(list.get(0) == list.get(2)) {
-			cnt++;
-		} else if(list.get(1) == list.get(2)) {
-			cnt++;
-		}
+		if(list.get(1) == list.get(0)) cnt++;
+		if(list.get(1) == list.get(2)) cnt++;
 		return cnt;
 	}
 	
 	// 같은 주사위 눈 갯수 받아서 상금 계산해주는 메서드
 	public static int calMoney(int checkNums, List<Integer> list) {
 		int money = 0;
-		list.sort(Comparator.naturalOrder());
 		switch (checkNums) {
 		case 3: money = list.get(0)*1000 + 10000; break;
 		case 2: money = list.get(1)*100 + 1000; break;
