@@ -23,7 +23,7 @@ class Solution {
 			bab = bab.replace("ma", " ").trim();
 		}
 		
-		if(bab.trim().length() == 0) return 1;
+		if(bab.length() == 0) return 1;
 		else return 0;
 		
 	}
