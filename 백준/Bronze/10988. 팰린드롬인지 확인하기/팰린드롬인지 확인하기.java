@@ -7,12 +7,10 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		char[] charSet = br.readLine().toCharArray();
+		String oriStr = br.readLine();
 		br.close();
-		String oriStr = String.valueOf(charSet);
-		StringBuilder sb = new StringBuilder();
-		for(int i = charSet.length-1; i >= 0; i--) sb.append(charSet[i]);
-		if(oriStr.equals(sb.toString())) System.out.println(1);
+		StringBuilder sb = new StringBuilder(oriStr);
+		if(oriStr.equals(sb.reverse().toString())) System.out.println(1);
 		else System.out.println(0);
 	}
 
