@@ -9,12 +9,12 @@ public class Main {
         for(int i = 0; i < testCase; i++) {
             money = Integer.parseInt(br.readLine());
             bw.append(money / 25 + " ");
-            money -= 25 * (money / 25);
+            money = money % 25;
             bw.append(money / 10 + " ");
-            money -= 10 * (money / 10);
+            money = money % 10;
             bw.append(money / 5 + " ");
-            money -= 5 * (money / 5);
-            bw.append(money / 1 + "");
+            money = money % 5;
+            bw.append(money+ "");
             bw.flush();
             System.out.println();
         }
