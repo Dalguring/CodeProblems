@@ -1,6 +1,6 @@
 # [unrated] 저자 별 카테고리 별 매출액 집계하기 - 144856 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/144856?language=oracle) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/144856) 
 
 ### 성능 요약
 
