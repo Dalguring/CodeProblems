@@ -5,6 +5,7 @@ class Solution {
             case "true"  : answer = a + b; break;
             case "false" : answer = a - b; break;
         }
+        
         return answer;
     }
 }
