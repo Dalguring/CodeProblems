@@ -16,7 +16,7 @@ public class Main {
             sb.append("Error");
         } else if(list.get(0) == 60 && list.get(1) == 60) {
             sb.append("Equilateral");
-        } else if(list.get(0) == list.get(1) || list.get(1) == list.get(2)) {
+        } else if(list.get(0).equals(list.get(1)) || list.get(1).equals(list.get(2))) {
             sb.append("Isosceles");
         } else {
             sb.append("Scalene");
