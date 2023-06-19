@@ -1,7 +1,7 @@
-SELECT DISTINCT A.REST_ID, REST_NAME, FOOD_TYPE, FAVORITES, 
-                ADDRESS, ROUND(AVG(REVIEW_SCORE) OVER(PARTITION BY A.REST_ID), 2) AS SCORE
-  FROM REST_INFO A
-  JOIN REST_REVIEW B
-    ON A.REST_ID = B.REST_ID
- WHERE SUBSTR(ADDRESS, 1, 2) = '서울'
- ORDER BY SCORE DESC, FAVORITES DESC;
+select a.rest_id, a.rest_name, a.food_type, a.favorites, a.address, round(avg(b.review_score), 2) as score
+from rest_info a, rest_review b
+where a.rest_id = b.rest_id
+    and a.address like '서울%'
+group by a.rest_id, a.rest_name, a.food_type, a.favorites, a.address
+order by score desc,
+         a.favorites desc
