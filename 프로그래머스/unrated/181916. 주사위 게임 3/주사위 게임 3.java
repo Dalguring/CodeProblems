@@ -1,52 +1,33 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     public int solution(int a, int b, int c, int d) {
-        int[] arr = new int[]{a, b, c, d};
-		int countA = 0;
-		int countB = 0;
-		int countC = 0;
-		int countD = 0;
+        int answer = 0;
         
-		Set<Integer> set = new LinkedHashSet<>();
-        
-		for(int i = 0; i < arr.length; i++) {
-			set.add(arr[i]);
-			if(a == arr[i]) countA++;
-			if(b == arr[i]) countB++;
-			if(c == arr[i]) countC++;
-			if(d == arr[i]) countD++;
-		}
-        
-		Integer[] setArr = set.toArray(new Integer[0]);
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(a, map.getOrDefault(a, 0) + 1);
+        map.put(b, map.getOrDefault(b, 0) + 1);
+        map.put(c, map.getOrDefault(c, 0) + 1);
+        map.put(d, map.getOrDefault(d, 0) + 1);
 
-		if(set.size() == 1) 
-            return 1111 * setArr[0];
-		else if(set.size() == 2 && countA == 1)
-			return a == setArr[0] ? (int)(Math.pow(10 * setArr[1] + setArr[0], 2)) :
-                                    (int)(Math.pow(10 * setArr[0] + setArr[1], 2));
-        else if(set.size() == 2 && countA == 3)
-            return a == setArr[0] ? (int)(Math.pow(10 * setArr[0] + setArr[1], 2)) :
-                                    (int)(Math.pow(10 * setArr[1] + setArr[0], 2));
-		else if(set.size() == 2 && countA == 2) 
-            return (setArr[0] + setArr[1]) * Math.abs(setArr[0] - setArr[1]);
-		else if(set.size() == 3) 
-            return countA == 2 && a == setArr[0] ? setArr[1] * setArr[2] :
-                   countA == 2 && a == setArr[1] ? setArr[0] * setArr[2] :
-                   countA == 2 && a == setArr[2] ? setArr[0] * setArr[1] :
-			       countB == 2 && b == setArr[0] ? setArr[1] * setArr[2] :
-                   countB == 2 && b == setArr[1] ? setArr[0] * setArr[2] :
-                   countB == 2 && b == setArr[2] ? setArr[0] * setArr[1] :
-                   countC == 2 && c == setArr[0] ? setArr[1] * setArr[2] :
-                   countC == 2 && c == setArr[1] ? setArr[0] * setArr[2] :
-                   countC == 2 && c == setArr[2] ? setArr[0] * setArr[1] :
-                   countD == 2 && d == setArr[0] ? setArr[1] * setArr[2] :
-                   countD == 2 && d == setArr[1] ? setArr[0] * setArr[2] :
-                   countD == 2 && d == setArr[2] ? setArr[0] * setArr[1] : 0;
-		else if(set.size() == 4) {
-            Arrays.sort(setArr);
-            return setArr[0];
+        if (map.size() == 1) return a * 1111;
+        if (map.size() == 2) {
+            if (map.containsValue(3)) {
+                for (Map.Entry<Integer, Integer> el : map.entrySet())
+                    answer += el.getKey() * (el.getValue() == 3 ? 10 : 1);
+                return (int) Math.pow(answer, 2);
+            }
+            int x = (a + b + c + d - 2 * a) / 2;
+            return (a + x) * Math.abs(a - x);
         }
-        return 0;
+        if (map.size() == 3) {
+            answer = 1;
+            for (Map.Entry<Integer, Integer> el : map.entrySet())
+                if (el.getValue() != 2) answer *= el.getKey();
+            return answer;
+        }
+        
+        return Math.min(Math.min(b, c), Math.min(a, d));
     }
 }
