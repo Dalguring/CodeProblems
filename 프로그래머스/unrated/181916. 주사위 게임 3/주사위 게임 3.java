@@ -23,11 +23,11 @@ class Solution {
 		if(set.size() == 1) 
             return 1111 * setArr[0];
 		else if(set.size() == 2 && countA == 1)
-			return a == setArr[0] ? (int)(Math.pow(10 * setArr[1] + setArr[0] * 1.0, 2)) :
-                                    (int)(Math.pow(10 * setArr[0] + setArr[1] * 1.0, 2));
+			return a == setArr[0] ? (int)(Math.pow(10 * setArr[1] + setArr[0], 2)) :
+                                    (int)(Math.pow(10 * setArr[0] + setArr[1], 2));
         else if(set.size() == 2 && countA == 3)
-            return a == setArr[0] ? (int)(Math.pow(10 * setArr[0] + setArr[1] * 1.0, 2)) :
-                                    (int)(Math.pow(10 * setArr[1] + setArr[0] * 1.0, 2));
+            return a == setArr[0] ? (int)(Math.pow(10 * setArr[0] + setArr[1], 2)) :
+                                    (int)(Math.pow(10 * setArr[1] + setArr[0], 2));
 		else if(set.size() == 2 && countA == 2) 
             return (setArr[0] + setArr[1]) * Math.abs(setArr[0] - setArr[1]);
 		else if(set.size() == 3) 
