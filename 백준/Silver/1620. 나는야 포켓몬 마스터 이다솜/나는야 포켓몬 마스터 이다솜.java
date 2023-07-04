@@ -6,15 +6,15 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
         int encyclopedia = Integer.parseInt(st.nextToken());
         int toCorrect = Integer.parseInt(st.nextToken());
 
         Map<String, Integer> pocketmonMap = new HashMap<>(encyclopedia);
         String[] names = new String[encyclopedia + 1];
-        
+
         for (int i = 1; i <= encyclopedia; i++) {
             String input = br.readLine();
             pocketmonMap.put(input, i);
@@ -24,15 +24,14 @@ public class Main {
         for (int i = 0; i < toCorrect; i++) {
             String input = br.readLine();
             if (!Character.isDigit(input.charAt(0))) {
-                bw.write(pocketmonMap.get(input) + "\n");
-                bw.flush();
+                sb.append(pocketmonMap.get(input)).append("\n");
             } else {
-                bw.write(names[Integer.parseInt(input)] + "\n");
-                bw.flush();
+                sb.append(names[Integer.parseInt(input)]).append("\n");
             }
+            
         }
         br.close();
-        bw.close();
+        System.out.println(sb.toString());
     }
 }
 
