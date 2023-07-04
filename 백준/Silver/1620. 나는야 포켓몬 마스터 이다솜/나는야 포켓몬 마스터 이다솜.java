@@ -11,8 +11,10 @@ public class Main {
 
         int encyclopedia = Integer.parseInt(st.nextToken());
         int toCorrect = Integer.parseInt(st.nextToken());
-        Map<String, Integer> pocketmonMap = new HashMap<>();
+
+        Map<String, Integer> pocketmonMap = new HashMap<>(encyclopedia);
         String[] names = new String[encyclopedia + 1];
+        
         for (int i = 1; i <= encyclopedia; i++) {
             String input = br.readLine();
             pocketmonMap.put(input, i);
@@ -21,7 +23,7 @@ public class Main {
 
         for (int i = 0; i < toCorrect; i++) {
             String input = br.readLine();
-            if (input.matches("^[a-zA-Z]*$")) {
+            if (!Character.isDigit(input.charAt(0))) {
                 bw.write(pocketmonMap.get(input) + "\n");
                 bw.flush();
             } else {
