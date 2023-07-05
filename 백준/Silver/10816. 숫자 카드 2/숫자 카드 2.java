@@ -20,9 +20,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         while(st.hasMoreTokens()) {
             int target = Integer.parseInt(st.nextToken());
-            if(!cardMap.containsKey(target))
-                cardMap.put(target, 0);
-            sb.append(cardMap.get(target) + " ");
+            sb.append(cardMap.getOrDefault(target, 0)).append(" ");
         }
         System.out.println(sb.toString().trim());
     }
