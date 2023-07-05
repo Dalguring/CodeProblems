@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int cards = Integer.parseInt(br.readLine());
+        br.readLine();
         StringTokenizer st = new StringTokenizer(br.readLine());
         Map<Integer, Integer> cardMap = new HashMap<>();
 
@@ -14,7 +14,7 @@ public class Main {
             else cardMap.put(key, cardMap.getOrDefault(key, 0) + 1);
         }
 
-        int toCorrect = Integer.parseInt(br.readLine());
+        br.readLine();
         st = new StringTokenizer(br.readLine());
         br.close();
         StringBuilder sb = new StringBuilder();
