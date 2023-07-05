@@ -1,18 +1,9 @@
 import java.util.*;
+import java.util.stream.*;
 
 class Solution {
     public String[] solution(String[] strArr) {
-        boolean[] containsAd = new boolean[strArr.length];
-        for(int i = 0; i < strArr.length; i++) {
-            containsAd[i] = strArr[i].contains("ad");
-        }
 
-        List<String> list = new LinkedList<>();
-        for(int i = 0; i < containsAd.length; i++) {
-            if(containsAd[i]) continue;
-            else list.add(strArr[i]);
-        }
-
-        return list.stream().toArray(String[]::new);
+        return Arrays.stream(strArr).filter(o -> !o.contains("ad")).collect(Collectors.toList()).stream().toArray(String[]::new);
     }
 }
