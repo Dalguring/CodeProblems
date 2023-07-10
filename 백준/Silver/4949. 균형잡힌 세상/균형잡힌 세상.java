@@ -1,12 +1,12 @@
 import java.io.*;
 import java.util.*;
-import java.util.function.Predicate;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Stack<String> stack = new Stack<>();
         StringBuilder sb = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
 
         while(true) {
             String sentence = br.readLine();
@@ -22,12 +22,13 @@ public class Main {
             }
             try {
                 for (char c : target) {
-                    if (c == '(' || c == '[') stack.push(String.valueOf(c));
+                    if (c == '(' || c == '[') stack.push(c);
+                    else if(stack.isEmpty()) throw new Exception();
                     else if (c == ')') {
-                        if (!stack.peek().equals(String.valueOf('(')) || stack.isEmpty()) throw new Exception();
+                        if (!stack.peek().equals('(')) throw new Exception();
                         else stack.pop();
                     } else if (c == ']') {
-                        if (!stack.peek().equals(String.valueOf('[')) || stack.isEmpty()) throw new Exception();
+                        if (!stack.peek().equals('[')) throw new Exception();
                         else stack.pop();
                     }
                 }
