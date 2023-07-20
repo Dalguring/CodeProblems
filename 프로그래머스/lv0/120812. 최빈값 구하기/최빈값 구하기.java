@@ -1,20 +1,23 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 class Solution {
     public int solution(int[] array) {
-        int[] checkCnt = new int[1001];
-        int max = Integer.MIN_VALUE;
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        for(int i : array)
+            hashMap.put(i, hashMap.getOrDefault(i, 0) + 1);
         
-        for (int i : array)
-            checkCnt[i]++;
+        List<Map.Entry<Integer, Integer>> el = new ArrayList<>(hashMap.entrySet());
+        el.sort(new Comparator<Map.Entry<Integer, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return o2.getValue() - o1.getValue();
+            }
+        });
         
-        for (int i : checkCnt)
-            max = Math.max(max, i);
+        if(el.size() > 1) {
+            if(el.get(0).getValue() == el.get(1).getValue()) return -1;
+        }
+        return el.get(0).getKey();
         
-        List<Integer> list = new ArrayList<>(Arrays.stream(checkCnt).boxed().collect(Collectors.toList()));
-        
-        if(list.indexOf(max) != list.lastIndexOf(max)) return -1;
-        else return list.indexOf(max);
     }
 }
