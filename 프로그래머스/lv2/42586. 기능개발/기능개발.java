@@ -4,8 +4,7 @@ class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         int[] chargeTo100 = new int[progresses.length];
         for (int i = 0; i < progresses.length; i++) {
-            chargeTo100[i] = (100 - progresses[i]) % speeds[i] == 0 ? 
-                             (100 - progresses[i]) / speeds[i] : (100 - progresses[i]) / speeds[i] + 1;
+            chargeTo100[i] = (int)Math.ceil(((double)100 - progresses[i]) / speeds[i]);
         }
         
         Queue<Integer> queue = new LinkedList<>();
