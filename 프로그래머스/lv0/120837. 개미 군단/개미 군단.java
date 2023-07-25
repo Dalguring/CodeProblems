@@ -2,10 +2,10 @@ class Solution {
     public int solution(int hp) {
         int ants = 0;
         
-        return generalAnt(hp, ants);
+        return general(hp, ants);
     }
     
-    private static int generalAnt(int hp, int ants) {
+    private static int general(int hp, int ants) {
         if(hp % 5 == 0) {
             ants += hp / 5;
             return ants;
