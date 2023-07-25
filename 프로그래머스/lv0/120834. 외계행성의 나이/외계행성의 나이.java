@@ -1,12 +1,9 @@
 class Solution {
     public String solution(int age) {
-        String answer = "";
-        String ageVal = age + "";
+        StringBuilder sb = new StringBuilder();
+        for(char c : String.valueOf(age).toCharArray())
+            sb.append((char) (c + 'a' - '0'));
         
-        for(int i = 0; i < ageVal.length(); i++) {
-            answer += (char)(ageVal.charAt(i) + 'a' - '0');
-        }
-        
-        return answer;
+        return sb.toString();
     }
 }
