@@ -1,17 +1,19 @@
+import java.util.*;
+
 class Solution {
     public int solution(int[] numbers, int k) {
-        int control = 1;
-        int result = 0;
-        int index = 2 * control - 2;
-        while(control <= k) {
-            if(index > numbers.length - 1)
-                index %= numbers.length;
-            result = numbers[index];
+        int answer = 0;
 
-            control++;
-            index = 2 * control - 2;
+        Queue<Integer> queue = new LinkedList<>();
+        for(int num : numbers) queue.add(num);
+
+        int cnt = 1;
+        while(cnt !=k){
+            queue.add(queue.poll());
+            queue.add(queue.poll());
+            cnt++;
         }
-        
-        return result;
+        answer = queue.poll();
+        return answer;
     }
 }
