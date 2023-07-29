@@ -80,7 +80,7 @@ Empty
 </tr>
 </tbody>
       </table>
-<p><code>CAR_RENTAL_COMPANY_DISCOUNT_PLAN</code> 테이블은 아래와 같은 구조로 되어있으며, <code>PLAN_ID</code>, <code>CAR_TYPE</code>, <code>DUTAION_TYPE</code>, <code>DISCOUNT_RATE</code> 는 각각 요금 할인 정책 ID, 자동차 종류, 대여 기간 종류, 할인율(%)을 나타냅니다.</p>
+<p><code>CAR_RENTAL_COMPANY_DISCOUNT_PLAN</code> 테이블은 아래와 같은 구조로 되어있으며, <code>PLAN_ID</code>, <code>CAR_TYPE</code>, <code>DURATION_TYPE</code>, <code>DISCOUNT_RATE</code> 는 각각 요금 할인 정책 ID, 자동차 종류, 대여 기간 종류, 할인율(%)을 나타냅니다.</p>
 <table class="table">
         <thead><tr>
 <th>Column name</th>
@@ -99,7 +99,7 @@ Empty
 <td>FALSE</td>
 </tr>
 <tr>
-<td>DURAION_TYPE</td>
+<td>DURATION_TYPE</td>
 <td>VARCHAR(255)</td>
 <td>FALSE</td>
 </tr>
@@ -205,7 +205,7 @@ Empty
         <thead><tr>
 <th>PLAN_ID</th>
 <th>CAR_TYPE</th>
-<th>DUTAION_TYPE</th>
+<th>DURATION_TYPE</th>
 <th>DISCOUNT_RATE</th>
 </tr>
 </thead>
