@@ -1,12 +1,8 @@
 import java.util.*;
 
 class Solution {
-    public ArrayList<Integer> solution(int n, int[] numlist) {
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        for(int i : numlist) {
-            if(i % n == 0) arr.add(i);
-        }
+    public int[] solution(int n, int[] numlist) {
         
-        return arr;
+        return Arrays.stream(numlist).filter(i -> i % n == 0).toArray();
     }
 }
