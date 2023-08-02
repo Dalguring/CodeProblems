@@ -1,16 +1,10 @@
 class Solution {
     public int solution(int num, int k) {
-        String answer = num+"";
-        int reAnswer = 0;
+        StringBuilder sb = new StringBuilder(String.valueOf(num));
         
-        for(int i = 0; i < answer.length(); i++) {
-            if(answer.charAt(i)-'0' == k) {
-                reAnswer = i+1;
-                break;
-            } else {
-                reAnswer = -1;
-            }
-        }
-        return reAnswer;
+        if(sb.indexOf(String.valueOf(k)) != -1)
+            return sb.indexOf(String.valueOf(k)) + 1;
+        else 
+            return -1;
     }
 }
