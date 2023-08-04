@@ -4,11 +4,8 @@ class Solution {
     public int solution(int[][] board) {
         Set<int[]> set = new HashSet<>();
         for(int[] a : returnSet(board, set)) {
-            try {
+            if(a[0] >= 0 && a[0] < board.length && a[1] >= 0 && a[1] < board[0].length)
                 board[a[0]][a[1]] = 1;
-            } catch (Exception e) {
-                continue;
-            }
         }
         
         print(board);
