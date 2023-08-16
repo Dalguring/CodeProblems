@@ -19,12 +19,9 @@ class Solution {
                             nStr += park[j].charAt(start[1]);
                     } else break;
 
-                    if(nStr.contains("X")) {
-                        nStr = "";
+                    if(nStr.contains("X")) 
                         break;
-                    }
                     else start[0] -= move;
-                    nStr = "";
                     break;
                 case "S":
                     String sStr = "";
@@ -33,12 +30,9 @@ class Solution {
                             sStr += park[j].charAt(start[1]);
                     } else continue;
 
-                    if(sStr.contains("X")) {
-                        sStr = "";
+                    if(sStr.contains("X")) 
                         continue;
-                    }
                     else start[0] += move;
-                    sStr = "";
                     break;
                 case "W":
                     if(start[1] - move < 0 || park[start[0]].substring(start[1] - move, start[1]).contains("X"))
