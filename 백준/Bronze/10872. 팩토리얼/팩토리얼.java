@@ -1,14 +1,16 @@
-import java.util.*;
+import java.io.*;
 
-public class Main{
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        System.out.println(pac(N));
-        
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int target = Integer.parseInt(br.readLine());
+        br.close();
+        System.out.println(factorial(target));
     }
-    public static int pac(int a) {
-		if(a == 0) return 1;
-		return a *= pac(a-1);
-	}
+
+    static int factorial(int target) {
+        if(target <= 1)
+            return 1;
+        return target * factorial(target - 1);
+    }
 }
