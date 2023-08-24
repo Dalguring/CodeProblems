@@ -21,12 +21,12 @@ public class Main {
                     break;
                 case 2:
                     if(!stack.isEmpty())
-                        sb.append(stack.pop() + "\n");
+                        sb.append(stack.pop()).append("\n");
                     else
                         sb.append("-1\n");
                     break;
                 case 3:
-                    sb.append(stack.size() + "\n");
+                    sb.append(stack.size()).append("\n");
                     break;
                 case 4:
                     if(!stack.isEmpty())
@@ -36,7 +36,7 @@ public class Main {
                     break;
                 case 5:
                     if(!stack.isEmpty())
-                        sb.append(stack.peek() + "\n");
+                        sb.append(stack.peek()).append("\n");
                     else
                         sb.append("-1\n");
                     break;
