@@ -10,9 +10,7 @@ class Solution {
         char[] chars = s.toCharArray();
         Arrays.sort(chars);
         s = String.valueOf(chars);
-        if (s.lastIndexOf("p") + 1 == s.length() - s.indexOf("y"))
-            return true;
-        else 
-            return false;
+        
+        return s.lastIndexOf("p") + 1 == s.length() - s.indexOf("y");
     }
 }
