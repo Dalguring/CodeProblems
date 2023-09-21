@@ -3,11 +3,11 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
         int[] array = new int[N];
         int[] result = new int[N];
         int max = Integer.MIN_VALUE;
-        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < N; i++) {
             array[i] = Integer.parseInt(br.readLine());
@@ -29,8 +29,9 @@ public class Main {
         }
 
         for (int i = 0; i < result.length; i++)
-            sb.append(result[i]).append("\n");
+            bw.write(result[i] + "\n");
 
-        System.out.println(sb);
+        bw.flush();
+        bw.close();
     }
 }
