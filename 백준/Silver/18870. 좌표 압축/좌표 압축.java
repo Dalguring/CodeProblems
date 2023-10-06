@@ -16,6 +16,7 @@ public class Main {
         Arrays.sort(sorted);
         int rank = 0;
         Map<Integer, Integer> rankMap = new HashMap<>();
+
         for (int value : sorted) {
             if (rankMap.containsKey(value))
                 continue;
@@ -24,9 +25,9 @@ public class Main {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i : origin)
-            sb.append(rankMap.get(i)).append(" ");
+        for (int value : origin)
+            sb.append(rankMap.get(value)).append(" ");
 
-        System.out.println(sb.toString().trim());
+        System.out.println(sb);
     }
 }
