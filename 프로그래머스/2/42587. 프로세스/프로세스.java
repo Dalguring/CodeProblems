@@ -16,13 +16,12 @@ class Solution {
             if (node.priority == pq.peek()) {
                 answer++;
                 pq.poll();
-                if (node.location == location)
-                    break;
             } else {
                 nodeQ.add(node);
                 continue;
             }
-            
+            if (node.location == location)
+                break;
         }
 
         return answer;
