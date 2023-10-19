@@ -7,11 +7,7 @@ class Solution {
         int[] third = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
         int[] correct = new int[3];
 
-        correct[0] = first[0] == answers[0] ? 1 : 0;
-        correct[1] = second[0] == answers[0] ? 1 : 0;
-        correct[2] = third[0] == answers[0] ? 1 : 0;
-
-        for (int i = 1; i < answers.length; i++) {
+        for (int i = 0; i < answers.length; i++) {
             if (answers[i] == first[i % first.length])
                 correct[0]++;
             if (answers[i] == second[i % second.length])
