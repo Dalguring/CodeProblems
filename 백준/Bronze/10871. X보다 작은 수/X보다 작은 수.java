@@ -1,17 +1,21 @@
-import java.util.Scanner;
-public class Main{
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int X = sc.nextInt();
-        int[] A = new int[N];
-        for(int i = 0; i < A.length; i++) {
-            A[i] = sc.nextInt();
-        }
-        for(int i = 0; i < A.length; i++) {
-            if(A[i] < X) {
-                System.out.print(A[i] + " ");
-            }
-        }
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int X = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        int[] array = new int[N];
+        br.close();
+
+        for (int i = 0; i < N; i++)
+            array[i] = Integer.parseInt(st.nextToken());
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(array).filter(i -> i < X).forEach(i -> sb.append(i).append(" "));
+
+        System.out.println(sb);
     }
 }
