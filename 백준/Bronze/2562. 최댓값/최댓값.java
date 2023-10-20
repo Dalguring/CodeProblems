@@ -1,23 +1,35 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Node2 getNumber = null;
+        int max = Integer.MIN_VALUE;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-        int[] arr = new int[9];
-        for(int i = 0; i < arr.length; i++) {
-            arr[i] = sc.nextInt();
+        for (int i = 0; i < 9; i++) {
+            int number = Integer.parseInt(br.readLine());
+            max = Math.max(number, max);
+            if (number == max)
+                getNumber = new Node2(number, i + 1);
         }
-        int max = arr[0];
-        int maxNum = 1;
-        for(int i = 0; i < arr.length; i++) {
-            if(max < arr[i]) {
-                max = arr[i];
-                maxNum = i+1;
-            } 
-        }
-        System.out.println(max);
-        System.out.println(maxNum);
-	}
 
+        br.close();
+        System.out.println(getNumber.toString());
+    }
+}
+
+class Node2 {
+    int number;
+    int index;
+
+    public Node2(int number, int index) {
+        this.number = number;
+        this.index = index;
+    }
+
+    @Override
+    public String toString() {
+        return number + "\n" + index;
+    }
 }
