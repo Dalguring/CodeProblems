@@ -1,18 +1,12 @@
+import java.io.*;
 import java.util.*;
+
 public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        br.close();
 
-	public static void main(String[] args) {
-		
-		Scanner sc = new Scanner(System.in);
-		String[] sentence = sc.nextLine().split(" ");
-		int count = 0;
-		for(String s : sentence) {
-			if(s.equals("")) {
-				continue;
-			}
-			count++;
-		}
-		System.out.println(count);
-	}
-
+        System.out.println(st.countTokens());
+    }
 }
