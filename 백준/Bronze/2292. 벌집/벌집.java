@@ -1,20 +1,23 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        
-    	Scanner sc = new Scanner(System.in);
-    	int N = sc.nextInt();
-    	int start = 1;
-    	int end = 1;
-    	int cycle = 1;
-    	for(int i = start; i <= end; i++) {
-    		if(N >= start && N <=end ) {
-    			System.out.println(cycle);
-    		}
-    		start = end+1;
-    		end = end+(6*cycle);
-    		cycle++;
-    	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int cycle = 0;
+        int stackSum = 1;
+        br.close();
+
+        while (N > stackSum) {
+            stackSum += 6 * cycle;
+            cycle++;
+        }
+        if (N == 1) {
+            System.out.println(1);
+            return;
+        }
+
+        System.out.println(cycle);
     }
 }
