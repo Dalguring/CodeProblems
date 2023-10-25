@@ -9,20 +9,17 @@ public class Main {
         br.close();
         Stack<Character> stack = new Stack<>();
         StringBuilder sb = new StringBuilder();
-        int size = target.length();
-        for (char c : string.toCharArray()) {
-            stack.push(c);
+        OUTER:
+        for (int i = 0; i < string.length(); i++) {
+            stack.push(string.charAt(i));
 
-            if (stack.size() >= size) {
-                int count = 0;
-                for (int i = size; i >= 1; i--)
-                    if (stack.get(stack.size() - i) == target.charAt(size - i))
-                        count++;
+            if (stack.size() >= target.length()) {
+                for (int j = target.length(); j >= 1; j--)
+                    if (stack.get(stack.size() - j) != target.charAt(target.length() - j))
+                        continue OUTER;
 
-                if (count == size) {
-                    for (int i = 0; i < size; i++)
-                        stack.pop();
-                }
+                for (int j = 0; j < target.length(); j++)
+                    stack.pop();
             }
         }
 
