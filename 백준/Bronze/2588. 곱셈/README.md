@@ -4,17 +4,21 @@
 
 ### 성능 요약
 
-메모리: 17668 KB, 시간: 212 ms
+메모리: 31120 KB, 시간: 40 ms
 
 ### 분류
 
-사칙연산(arithmetic), 수학(math)
+사칙연산, 수학
+
+### 제출 일자
+
+2023년 10월 31일 11:07:22
 
 ### 문제 설명
 
 <p>(세 자리 수) × (세 자리 수)는 다음과 같은 과정을 통하여 이루어진다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="width: 306px; height: 183px; "></p>
+<p style="text-align: center;"><img alt="" src="https://www.acmicpc.net/upload/images/f5NhGHVLM4Ix74DtJrwfC97KepPl27s%20(1).png" style="width: 306px; height: 183px; "></p>
 
 <p>(1)과 (2)위치에 들어갈 세 자리 자연수가 주어질 때 (3), (4), (5), (6)위치에 들어갈 값을 구하는 프로그램을 작성하시오.</p>
 
