@@ -1,10 +1,10 @@
-# [unrated] flag에 따라 다른 값 반환하기 - 181933 
+# [level unrated] flag에 따라 다른 값 반환하기 - 181933 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181933) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181933?language=python3) 
 
 ### 성능 요약
 
-메모리: 77.2 MB, 시간: 0.03 ms
+메모리: 10.3 MB, 시간: 0.00 ms
 
 ### 구분
 
@@ -12,7 +12,11 @@
 
 ### 채점결과
 
-Empty
+정확성: 100.0<br/>합계: 100.0 / 100.0
+
+### 제출 일자
+
+2023년 11월 3일 9:44:24
 
 ### 문제 설명
 
@@ -23,7 +27,7 @@ Empty
 <h5>제한사항</h5>
 
 <ul>
-<li>-1000 ≤ <code>a</code>, <code>b</code> ≤ 1,000</li>
+<li>-1,000 ≤ <code>a</code>, <code>b</code> ≤ 1,000</li>
 </ul>
 
 <hr>
@@ -68,4 +72,4 @@ Empty
 </ul>
 
 
-> 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+> 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
