@@ -3,10 +3,10 @@ import sys
 N = int(sys.stdin.readline())
 hasSet = set(map(int, sys.stdin.readline().split()))
 M = int(sys.stdin.readline())
-compareSet = list(map(int, sys.stdin.readline().split()))
+compareList = list(map(int, sys.stdin.readline().split()))
 
-for i in range(len(compareSet)):
-    if compareSet[i] in hasSet:
-        print(1, end=" ")
+for i in compareList:
+    if i in hasSet:
+        sys.stdout.write('1 ')
     else:
-        print(0, end=" ")
+        sys.stdout.write('0 ')
