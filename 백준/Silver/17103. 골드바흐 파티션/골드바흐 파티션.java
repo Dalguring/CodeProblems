@@ -7,6 +7,8 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         boolean[] primes = new boolean[10000001];
         for (int i = 2; i <= Math.sqrt(primes.length); i++) {
+            if (primes[i])
+                continue;
             for (int j = i * i; j < primes.length; j += i) {
                 primes[j] = true;
             }
