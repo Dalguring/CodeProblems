@@ -1,29 +1,23 @@
 import java.io.*;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int lt = String.valueOf(N).length();
+        int target = Integer.parseInt(br.readLine());
         int answer = 0;
-        br.close();
-
-        for (int i = N - 9 * lt; i < N; i++) {
-            int length = String.valueOf(i).length() - 1;
-            int plus = 0;
-            int num = i;
-            while (length >= 0) {
-                plus += num / (int)Math.pow(10, length);
-                num %= (int)Math.pow(10, length);
-                length--;
+        
+        for (int i = target - 9 * String.valueOf(target).length(); i < target; i++) {
+            int accum = 0;
+            for (int j = 0; j < String.valueOf(i).length(); j++) {
+                accum += Character.getNumericValue(String.valueOf(i).charAt(j));
             }
-            if (i + plus == N) {
+            
+            if (i + accum == target) {
                 answer = i;
                 break;
             }
         }
-
         System.out.println(answer);
+        br.close();
     }
 }
