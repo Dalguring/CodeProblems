@@ -1,37 +1,37 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-	public static void main(String[] args) throws IOException {
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		int A = Integer.parseInt(st.nextToken());
-		int B = Integer.parseInt(st.nextToken());
-		int C = Integer.parseInt(br.readLine());
-		br.close();
-		
-		int hours = (B+C) / 60;
-		int mins = (B+C) % 60;
-		
-		if(hours == 0) {
-			bw.write(A + " " + mins);
-		} else if(hours >= 1 && A + hours >= 24) {
-			bw.write(A+hours-24 + " " + mins);
-		} else {
-			bw.write(A+hours + " " + mins);
-		}
-		
-		bw.flush();
-		bw.close();
-		
-	}
+        Time time = new Time(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+        int setTime = Integer.parseInt(br.readLine());
+        time.getAdjustTime(setTime);
+        System.out.println(time.toString());
 
+        br.close();
+    }
+}
+
+class Time {
+    private int hour;
+    private int minute;
+
+    public Time(int hour, int minute) {
+        this.hour = hour;
+        this.minute = minute;
+    }
+
+    public void getAdjustTime(int setTime) {
+        int leftTime = (minute + (setTime % 60)) / 60;
+        minute = (minute + (setTime % 60)) % 60;
+        hour = (hour + (setTime / 60) + leftTime) % 24;
+    }
+
+    @Override
+    public String toString() {
+        return hour + " " + minute;
+    }
 }
