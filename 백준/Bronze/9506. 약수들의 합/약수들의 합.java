@@ -2,8 +2,9 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static Set<Integer> set = new TreeSet<>();
-
+    private final static Set<Integer> set = new TreeSet<>();
+    private final static StringBuilder sb = new StringBuilder();
+    
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int target = 0;
@@ -28,10 +29,10 @@ public class Main {
     }
 
     static String makeString(boolean equal, int target) {
-        StringBuilder sb = new StringBuilder();
-
+        sb.setLength(0);
+        
         if (equal) {
-            sb.append(target + " = ");
+            sb.append(target).append(" = ");
             set.stream().forEach(elem -> sb.append(elem).append(" + "));
             sb.delete(sb.length() - 3, sb.length());
         } else {
