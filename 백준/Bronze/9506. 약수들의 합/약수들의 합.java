@@ -1,42 +1,43 @@
 import java.io.*;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
+    static Set<Integer> set = new TreeSet<>();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        while(true) {
-            int target = Integer.parseInt(br.readLine());
-            if(target == -1) break;
-            Set<Integer> set = new LinkedHashSet<Integer>();
+        int target = 0;
+
+        while ((target = Integer.parseInt(br.readLine())) != -1) {
             set.add(1);
-            for(int i = 2; i <= target / 2; i++) {
-                if(target % i == 0) set.add(i);
-            }
-            int total = 0;
-            for(int i : set) {
-                total += i;
-            }
-            if(total == target) {
-                bw.write(print(set, target)+"\n");
-            } else {
-                bw.write(target + " is NOT perfect.\n");
-            }
-            bw.flush();
+            addDivisor(target);
+            boolean equal = set.stream().mapToInt(Integer::intValue).sum() == target;
+            System.out.println(makeString(equal, target));
+            set.clear();
         }
         br.close();
-        bw.close();
     }
 
-    public static String print(Set<Integer> set, int target) {
-        String str = target + " = ";
-        for(int i : set) {
-            str += i + " + ";
+    static void addDivisor(int target) {
+        for (int i = 2; i <= Math.sqrt(target); i++) {
+            if (target % i == 0) {
+                set.add(i);
+                set.add(target / i);
+            }
         }
-        str = str.substring(0, str.length() - 3);
+    }
 
-        return str;
+    static String makeString(boolean equal, int target) {
+        StringBuilder sb = new StringBuilder();
+
+        if (equal) {
+            sb.append(target + " = ");
+            set.stream().forEach(elem -> sb.append(elem).append(" + "));
+            sb.delete(sb.length() - 3, sb.length());
+        } else {
+            sb.append(target).append(" is NOT perfect.");
+        }
+
+        return sb.toString();
     }
 }
