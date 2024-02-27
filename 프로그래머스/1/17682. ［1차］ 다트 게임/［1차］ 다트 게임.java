@@ -21,7 +21,6 @@ class Solution {
             if (s.matches("[0-9]")) {
                 continue;
             }
-
             if (eventMap.containsKey(s)) {
                 if (s.equals("S") || s.equals("D") || s.equals("T")) {
                     order++;
@@ -29,12 +28,11 @@ class Solution {
                 } else {
                     if (s.equals("*")) {
                         if (order >= 2) {
-                            dartScore[order - 2] = eventMap.get("*") * dartScore[order - 2];
+                            dartScore[order - 2] = eventMap.get(s) * dartScore[order - 2];
                         }
-                        dartScore[order - 1] = eventMap.get("*") * dartScore[order - 1];
-                    } else {
-                        dartScore[order - 1] = eventMap.get("#") * dartScore[order - 1];
                     }
+                    
+                    dartScore[order - 1] = eventMap.get(s) * dartScore[order - 1];
                 }
             }
         }
