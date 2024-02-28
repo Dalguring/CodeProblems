@@ -2,6 +2,8 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
+        
+        report = Arrays.stream(report).distinct().toArray(String[]::new);
         // 이메일 받은 횟수 저장할 Map 객체
         Map<String, Integer> mailMap = new LinkedHashMap<>();
         // 피고:신고인 저장할 Map 객체
