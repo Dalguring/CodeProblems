@@ -24,11 +24,7 @@ class Solution {
         stageList.sort(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                if (stageMap.get(o1).equals(stageMap.get(o2))) {
-                    return o1 - o2;
-                } else {
-                    return stageMap.get(o2).compareTo(stageMap.get(o1));
-                }
+                return stageMap.get(o2).compareTo(stageMap.get(o1));
             }
         });
         
