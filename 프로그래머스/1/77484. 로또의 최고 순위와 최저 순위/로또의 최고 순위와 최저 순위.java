@@ -5,19 +5,19 @@ class Solution {
     public int[] solution(int[] lottos, int[] win_nums) {
         List<Integer> winningList = new LinkedList<>(Arrays.stream(win_nums).boxed().collect(Collectors.toList()));
         int match = 0;
-        int maxMatch = 0;
+        int zeros = 0;
 
         for (int i = 0; i < lottos.length; i++) {
             if (winningList.contains(lottos[i])) {
                 winningList.remove(winningList.indexOf(lottos[i]));
                 match++;
             }
+            if (lottos[i] == 0) {
+                zeros++;
+            }
         }
 
-        int left = (int) Arrays.stream(lottos).filter(num -> num == 0).count();
-        maxMatch = Math.min(match + Math.min(left, winningList.size()), 6);
-        
-        return new int[]{getRank(maxMatch), getRank(match)};
+        return new int[]{getRank(match + zeros), getRank(match)};
     }
     
     private static int getRank(int number) {
