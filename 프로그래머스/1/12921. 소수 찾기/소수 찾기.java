@@ -1,22 +1,24 @@
 class Solution {
     public int solution(int n) {
         int answer = 0;
-        for (int i = 2; i <= n; i++) {
-            if (isPrime(i)) {
+        boolean[] primeArray = new boolean[n + 1];
+        primeArray[0] = true;
+        primeArray[1] = true;
+
+        for (int i = 2; i < Math.sqrt(primeArray.length); i++) {
+            if (!primeArray[i]) {
+                for (int j = i * i; j < primeArray.length; j += i) {
+                    primeArray[j] = true;
+                }
+            }
+        }
+
+        for (boolean b : primeArray) {
+            if (!b) {
                 answer++;
             }
         }
         
         return answer;
-    }
-    
-    private static boolean isPrime(int i) {
-        for (int j = 2; j <= Math.sqrt(i); j++) {
-            if (i % j == 0) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
