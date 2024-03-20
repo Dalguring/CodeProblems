@@ -11,23 +11,23 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int[] array = new int[length];
         Stack<Integer> stack = new Stack<>();
-        Map<Integer, Integer> countMap = new HashMap<>();
+        int[] count = new int[10000001];
 
         for (int i = 0; i < array.length; i++) {
             array[i] = Integer.parseInt(st.nextToken());
-            countMap.put(array[i], countMap.getOrDefault(array[i], 0) + 1);
+            count[array[i]]++;
         }
 
         for (int i = 0; i < array.length; i++) {
-            while (!stack.isEmpty() && countMap.get(array[stack.peek()]) < countMap.get(array[i])) {
+            while (!stack.isEmpty() && count[array[stack.peek()]] < count[array[i]]) {
                 array[stack.pop()] = array[i];
             }
 
             stack.push(i);
         }
 
-        for (int index : stack) {
-            array[index] = -1;
+        while (!stack.isEmpty()) {
+            array[stack.pop()] = -1;
         }
 
         StringBuilder sb = new StringBuilder();
