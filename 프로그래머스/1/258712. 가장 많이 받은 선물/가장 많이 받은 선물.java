@@ -9,18 +9,18 @@ class Solution {
         Map<String, Integer> giftIndices = new HashMap<>();
         // 다음 달에 받을 선물을 계산하기 위한 Map
         Map<String, Integer> receiveMap = new HashMap<>();
+        int maxReceive = 0;
 
         for (String name : friends) {
             giveMap.put(name, new HashMap<>());
-            receiveMap.put(name, 0);
-            giftIndices.put(name, 0);
         }
 
         for (String giveReceive : gifts) {
             String givePerson = giveReceive.split(" ")[0];
             String receivedPerson = giveReceive.split(" ")[1];
 
-            giveMap.get(givePerson).put(receivedPerson, giveMap.get(givePerson).getOrDefault(receivedPerson, 0) + 1);
+            giveMap.get(givePerson).put(receivedPerson, giveMap.get(givePerson)
+                                        .getOrDefault(receivedPerson, 0) + 1);
             giftIndices.put(givePerson, giftIndices.getOrDefault(givePerson, 0) + 1);
             giftIndices.put(receivedPerson, giftIndices.getOrDefault(receivedPerson, 0) - 1);
         }
@@ -43,16 +43,13 @@ class Solution {
                 }
 
                 if (giveCount == receiveCount) {
-                    if (giftIndices.get(name) > giftIndices.get(givenPerson)) {
+                    if (giftIndices.getOrDefault(name, 0) > giftIndices.getOrDefault(givenPerson, 0)) {
                         receiveMap.put(name, receiveMap.getOrDefault(name, 0) + 1);
                     }
                 }
-            };
-        }
 
-        int maxReceive = 0;
-        for (String name : receiveMap.keySet()) {
-            maxReceive = Math.max(receiveMap.get(name), maxReceive);
+                maxReceive = Math.max(receiveMap.getOrDefault(name, 0), maxReceive);
+            };
         }
         
         return maxReceive;
