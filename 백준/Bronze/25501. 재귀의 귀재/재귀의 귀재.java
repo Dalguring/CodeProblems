@@ -3,35 +3,34 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+    static int cycle = 0;
+    static final StringBuilder sb = new StringBuilder();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
 
-	public static void main(String[] args) throws IOException {
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
-		
-		for(int i = 0; i < T; i++) {
-			String s = br.readLine();
-			int[] result = new int[2];
-			result = isPalindrome(s);
-			System.out.println(result[0] + " " + result[1]); 
-			cnt = 0;
-		}
-		
-		br.close();
-	}
-	
-	public static int[] isPalindrome(String s) {
-		return recursion(s, 0, s.length()-1);
-	}
-	
-	static int cnt = 0;
-	public static int[] recursion(String s, int l, int r) {
-		cnt++;
-		
-		if(l >= r) return new int[] {1, cnt};
-		else if(s.charAt(l) != s.charAt(r)) return new int[] {0, cnt};
-		else return recursion(s, l+1, r-1);
-		
-	}
+        for (int i = 0; i < N; i++) {
+            String word = br.readLine();
+            int isPalindrome = isPalindrome(word, 0, word.length() - 1);
+            sb.append(isPalindrome).append(" ").append(cycle).append("\n");
 
+            cycle = 0;
+        }
+
+        System.out.println(sb);
+        br.close();
+    }
+
+    static int isPalindrome(String word, int left, int right) {
+        cycle++;
+
+        if (left >= right) {
+            return 1;
+        } else if (word.charAt(left) != word.charAt(right)) {
+            return 0;
+        }
+
+
+        return isPalindrome(word, left + 1, right - 1);
+    }
 }
