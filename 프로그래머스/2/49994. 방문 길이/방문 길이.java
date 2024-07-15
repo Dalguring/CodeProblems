@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class Solution {
     public int solution(String dirs) {
-        List<String> visitList = new ArrayList<>();
+        Set<String> visitList = new HashSet<>();
         Map<Character, int[]> directionMap = new HashMap<>();
+        
         directionMap.put('U', new int[]{0, 1});
         directionMap.put('R', new int[]{1, 0});
         directionMap.put('D', new int[]{0, -1});
