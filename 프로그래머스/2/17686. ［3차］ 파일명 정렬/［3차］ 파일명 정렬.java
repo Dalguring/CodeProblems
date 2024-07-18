@@ -59,8 +59,7 @@ class File {
     }
 
     void setIntNumber() {
-        this.intNumber = this.number.replaceAll("^0", "").isEmpty() ? 0 :
-            Integer.parseInt(this.number.replaceAll("^0", ""));
+        this.intNumber = Integer.parseInt(this.number);
     }
 
     @Override
