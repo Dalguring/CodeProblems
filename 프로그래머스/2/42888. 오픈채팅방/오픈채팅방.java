@@ -1,41 +1,45 @@
 import java.util.*;
 
 class Solution {
+    
+    enum Action {
+        Enter, Leave, Change
+    }
+    
     public String[] solution(String[] record) {
         Map<String, String> idNickMap = new HashMap<>();
         List<String> history = new ArrayList<>();
-        StringTokenizer st;
 
         for (String log : record) {
-            st = new StringTokenizer(log);
-            String delim = st.nextToken();
-            String uid = st.nextToken();
+            String[] parts = log.split(" ");
+            Action action = Action.valueOf(parts[0]);
+            String uid = parts[1];
 
-            switch (delim) {
-                case "Enter" -> {
-                    idNickMap.put(uid, st.nextToken());
-                    history.add("E ".concat(uid));
+            switch (action) {
+                case Enter -> {
+                    idNickMap.put(uid, parts[2]);
+                    history.add("Enter ".concat(uid));
                 }
-                case "Leave" -> history.add("L ".concat(uid));
-                case "Change" -> idNickMap.put(uid, st.nextToken());
+                case Leave -> history.add("Leave ".concat(uid));
+                case Change -> idNickMap.put(uid, parts[2]);
             }
         }
 
         String[] answer = new String[history.size()];
 
         for (int i = 0; i < answer.length; i++) {
-            st = new StringTokenizer(history.get(i));
-            String delim = st.nextToken();
-            String uid = st.nextToken();
+            String[] parts = history.get(i).split(" ");
+            Action action = Action.valueOf(parts[0]);
+            String uid = parts[1];
 
-            switch (delim) {
-                case "E" -> {
-                    answer[i] = idNickMap.get(uid).concat("님이 들어왔습니다.");
-                }
-                case "L" -> {
-                    answer[i] = idNickMap.get(uid).concat("님이 나갔습니다.");
-                }
+            StringBuilder sb = new StringBuilder(idNickMap.get(uid));
+
+            switch (action) {
+                case Enter -> sb.append("님이 들어왔습니다.");
+                case Leave -> sb.append("님이 나갔습니다.");
             }
+
+            answer[i] = sb.toString();
         }
         
         return answer;
