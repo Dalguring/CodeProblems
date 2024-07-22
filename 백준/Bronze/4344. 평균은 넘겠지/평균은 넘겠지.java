@@ -1,32 +1,41 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int C = sc.nextInt();
-		double[][] arr = new double [C][];
-		for(int i = 0; i < arr.length; i++) {
-			int N = sc.nextInt();
-			arr[i] = new double[N];
-			double a = 0;
-			for(int j = 0; j < arr[i].length; j++) {
-				arr[i][j] = sc.nextInt();
-				a += arr[i][j];
-			}
-			a /= N;
-			double count = 0;
-			double perc = 0;
-			for(int j = 0; j < arr[i].length; j++) {
-				if(arr[i][j] > a) {
-					count++;
-				}
-			}
-			perc = (count / N)*100;
-			String sPerc = String.format("%.3f", perc);
-			System.out.println(sPerc+"%");
-		}
-	
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int totalCase = Integer.parseInt(br.readLine());
+        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
 
+        for (int i = 0; i < totalCase; i++) {
+            st = new StringTokenizer(br.readLine());
+            List<Integer> scoreList = new ArrayList<>();
+            int count = Integer.parseInt(st.nextToken());
+
+            while (st.hasMoreTokens()) {
+                scoreList.add(Integer.parseInt(st.nextToken()));
+            }
+
+            double average = scoreList.stream()
+                                        .mapToInt(Integer::intValue)
+                                        .average()
+                                        .orElse(0);
+
+            long value = scoreList.stream()
+                                    .filter(score -> score > average)
+                                    .count();
+
+            double percentage = (double) value / count * 100;
+            sb.append(String.format("%.3f%%", percentage)).append("\n");
+        }
+
+        System.out.println(sb);
+        br.close();
+    }
 }
