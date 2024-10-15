@@ -22,7 +22,7 @@ public class Main {
                 break;
             }
 
-            sb.append(String.format("w(%d, %d, %d) = %d", a, b, c, w(a, b, c))).append("\n");
+            sb.append("w(" + a + ", " + b + ", " + c + ") = ").append(w(a ,b ,c)).append('\n');
         }
 
         System.out.println(sb);
