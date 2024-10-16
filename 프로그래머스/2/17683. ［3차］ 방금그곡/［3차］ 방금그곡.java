@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Solution {
     public String solution(String m, String[] musicinfos) {
@@ -25,18 +26,10 @@ class Solution {
         }
 
         if (musicList.size() != 0) {
-            musicList.sort(new Comparator<Music>() {
-                @Override
-                public int compare(Music o1, Music o2) {
-                    if (o1.getPlayTime() < o2.getPlayTime()) {
-                        return 1;
-                    } else if (o1.getPlayTime() == o2.getPlayTime()) {
-                        return o1.getIndex() - o2.getIndex();
-                    } else {
-                        return -1;
-                    }
-                }
-            });
+            musicList = musicList.stream()
+                    .sorted(Comparator.comparing(Music::getPlayTime).reversed()
+                            .thenComparing(Music::getIndex))
+                    .collect(Collectors.toList());
 
             answer = musicList.get(0).getMusicName();
         }
