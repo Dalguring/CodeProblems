@@ -9,10 +9,7 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < N; i++) {
-            sb.append(i + 1)
-                    .append(". ")
-                    .append(br.readLine())
-                    .append("\n");
+            sb.append(String.format("%d. %s", i + 1, br.readLine())).append("\n");
         }
 
         System.out.println(sb);
