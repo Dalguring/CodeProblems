@@ -11,39 +11,56 @@ public class Main {
 
         if (m > 0) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-
+            
             for (int i = 0; i < m; i++) {
                 broken[Integer.parseInt(st.nextToken())] = true;
             }
         }
 
-        int minPress = Math.abs(target - 100);
-
-        for (int i = 0; i <= 1000000; i++) {
-            int len = possible(i);
-
-            if (len > 0) {
-                int press = len + Math.abs(target - i);
-                minPress = Math.min(minPress, press);
+        int answer = Math.abs(target - 100);
+        int offset = 0;
+        
+        while (offset <= answer) {
+            if (target + offset <= 1000000) {
+                int len = getChannelLength(target + offset);
+                
+                if (len > 0) {
+                    int press = len + offset;
+                    answer = Math.min(answer, press);
+                }
             }
+
+            if (offset > 0 && target - offset >= 0) {
+                int len = getChannelLength(target - offset);
+                
+                if (len > 0) {
+                    int press = len + offset;
+                    answer = Math.min(answer, press);
+                }
+            }
+
+            offset++;
         }
 
-        System.out.println(minPress);
+        System.out.println(answer);
     }
 
-    static int possible(int n) {
-        if (n == 0) {
+    static int getChannelLength(int channel) {
+        if (channel == 0) {
             return broken[0] ? 0 : 1;
         }
 
         int len = 0;
-
-        while (n > 0) {
-            if (broken[n % 10]) return 0;
+        
+        while (channel > 0) {
+            if (broken[channel % 10]) {
+                return 0;
+            }
+            
             len++;
-            n /= 10;
+            channel /= 10;
         }
-
+        
         return len;
     }
 }
