@@ -2,22 +2,11 @@ import java.util.Stack;
 
 class Solution {
     public String solution(String p) {
-        StringBuilder sb = new StringBuilder();
-
-        if (p.isEmpty() || isCorrect(p)) {
+        if (p.equals("") || isCorrect(p)) {
             return p;
         }
-
-        String minSatisfied = minimumBalanced(p);
-        String remain = p.substring(minSatisfied.length());
-
-        if (isCorrect(minSatisfied)) {
-            sb.append(minSatisfied).append(makeCorrect(remain));
-        } else {
-            sb.append(makeCorrect(p));
-        }
         
-        return sb.toString();
+        return makeCorrect(p);
     }
     
     static boolean isCorrect(String parentheses) {
@@ -29,10 +18,11 @@ class Solution {
         char[] parenthesis = parentheses.toCharArray();
 
         for (char c : parenthesis) {
-            if (c == '(') {
+            if (stack.isEmpty() || c == '(') {
                 stack.push(c);
+            } else if (stack.peek() == ')') {
+                return false;
             } else {
-                if (stack.isEmpty()) return false;
                 stack.pop();
             }
         }
@@ -44,14 +34,16 @@ class Solution {
         int count = 0;
 
         for (int i = 0; i < parentheses.length(); i++) {
-            if (parentheses.charAt(i) == '(') count++;
-            else count--;
+            if (parentheses.charAt(i) == '(') {
+                count++;
+            } else {
+                count--;
+            }
 
             if (count == 0) {
                 return parentheses.substring(0, i + 1);
             }
         }
-
         return "";
     }
 
@@ -61,22 +53,19 @@ class Solution {
         }
 
         String minSatisfied = minimumBalanced(parentheses);
-        String remain = parentheses.substring(minSatisfied.length());
 
         if (isCorrect(minSatisfied)) {
-            return minSatisfied + makeCorrect(remain);
+            return minSatisfied + makeCorrect(parentheses.substring(minSatisfied.length()));
         }
 
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("(");
-        sb.append(makeCorrect(remain));
-        sb.append(")");
+        StringBuilder sb = new StringBuilder(parentheses.length())  // 초기 capacity 설정
+                .append('(')
+                .append(makeCorrect(parentheses.substring(minSatisfied.length())))
+                .append(')');
 
         if (minSatisfied.length() > 2) {
-            String inner = minSatisfied.substring(1, minSatisfied.length() - 1);
-            for (char c : inner.toCharArray()) {
-                sb.append(c == '(' ? ')' : '(');
+            for (int i = 1; i < minSatisfied.length() - 1; i++) {
+                sb.append(minSatisfied.charAt(i) == '(' ? ')' : '(');
             }
         }
 
