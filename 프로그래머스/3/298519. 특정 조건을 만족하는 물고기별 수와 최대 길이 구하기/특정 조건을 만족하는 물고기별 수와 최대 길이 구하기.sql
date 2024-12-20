@@ -1,0 +1,16 @@
+SELECT COUNT(*) AS FISH_COUNT
+     , B.MAX_LENGTH
+     , A.FISH_TYPE
+  FROM FISH_INFO A
+  JOIN (SELECT FISH_TYPE
+             , AVG(CASE WHEN LENGTH <= 10
+                        THEN 10
+                        ELSE LENGTH
+                         END) AS AVG_LENGTH
+             , MAX(LENGTH) AS MAX_LENGTH
+          FROM FISH_INFO 
+         GROUP BY FISH_TYPE) B
+    ON A.FISH_TYPE = B.FISH_TYPE
+ WHERE B.MAX_LENGTH >= 33
+ GROUP BY A.FISH_TYPE, B.MAX_LENGTH
+ ORDER BY FISH_TYPE;
