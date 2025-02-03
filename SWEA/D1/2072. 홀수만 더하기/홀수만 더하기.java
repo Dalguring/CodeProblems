@@ -1,31 +1,26 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.Arrays;
 
 public class Solution {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine());
-        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
+        int testcase = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < T; i++) {
-            List<Integer> numList = new ArrayList<>();
-            st = new StringTokenizer(br.readLine());
-
-            while (st.hasMoreTokens()) {
-                numList.add(Integer.parseInt(st.nextToken()));
-            }
-
-            int sum = numList.stream()
+        for (int i = 0; i < testcase; i++) {
+            String[] numbers = br.readLine().split(" ");
+            int sum = Arrays.stream(numbers)
+                    .mapToInt(Integer::parseInt)
                     .filter(num -> num % 2 != 0)
-                    .mapToInt(Integer::intValue)
                     .sum();
 
-            System.out.printf("#%d %d", i + 1, sum);
-            System.out.println();
+            sb.append(String.format("#%d %d", i + 1, sum)).append("\n");
         }
+
+        System.out.println(sb);
+        br.close();
     }
 }
