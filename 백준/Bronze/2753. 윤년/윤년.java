@@ -1,18 +1,17 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int targetYear = Integer.parseInt(br.readLine());
-        int rtn = 0;
-        br.close();
-        
-        if (targetYear % 4 == 0 && targetYear % 100 != 0)
-            rtn = 1;
-        if (targetYear % 400 == 0)
-            rtn = 1;
+        int year = Integer.parseInt(br.readLine());
 
-        System.out.println(rtn);
+        if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+            System.out.println(1);
+            return;
+        }
+
+        System.out.println(0);
     }
 }
