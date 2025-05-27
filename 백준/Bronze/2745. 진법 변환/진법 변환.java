@@ -1,31 +1,23 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Map<Character, Integer> binaryMap = new HashMap<>();
+        String input = st.nextToken();
+        int baseNumber = Integer.parseInt(st.nextToken());
+        int answer = 0;
 
-        for (int i = 10; i <= 35; i++) {
-            binaryMap.put((char)('A' - 10 + i), i);
+        for (int i = 0; i < input.length(); i++) {
+            answer += Character.isDigit(input.charAt(i)) ?
+                    Math.pow(baseNumber, input.length() - 1 - i) * Character.getNumericValue(input.charAt(i))
+                    : Math.pow(baseNumber, input.length() - 1 - i) * (input.charAt(i) - 'A' + 10);
         }
 
-        StringBuilder sb = new StringBuilder(st.nextToken()).reverse();
-        int rootNum = Integer.parseInt(st.nextToken());
-        int total = 0;
-
-        for (int i = 0; i < sb.length(); i++) {
-            char target = sb.charAt(i);
-            if (binaryMap.containsKey(target)) {
-                total += binaryMap.get(target) * Math.pow(rootNum, i);
-            } else {
-                total += Character.getNumericValue(target) * Math.pow(rootNum, i);
-            }
-        }
-
-        System.out.println(total);
+        System.out.println(answer);
         br.close();
     }
 }
