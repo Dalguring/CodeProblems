@@ -1,23 +1,20 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int cycle = 0;
-        int stackSum = 1;
+        int roomNumber = Integer.parseInt(br.readLine());
+        int prefixSum = 1;
+        int pass = 1;
+
+        while (roomNumber > prefixSum) {
+            prefixSum += 6 * pass;
+            pass++;
+        }
+
+        System.out.print(pass);
         br.close();
-
-        while (N > stackSum) {
-            stackSum += 6 * cycle;
-            cycle++;
-        }
-        if (N == 1) {
-            System.out.println(1);
-            return;
-        }
-
-        System.out.println(cycle);
     }
 }
