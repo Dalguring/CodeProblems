@@ -1,29 +1,22 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        double a = Double.parseDouble(st.nextToken());
+        double b = Double.parseDouble(st.nextToken());
+        double c = Double.parseDouble(st.nextToken());
+        double d = Double.parseDouble(st.nextToken());
+        double e = Double.parseDouble(st.nextToken());
+        double f = Double.parseDouble(st.nextToken());
+
+        int y = (int) ((c * d - a * f) / (b * d - a * e));
+        System.out.printf("%d %d", (int) ((c * e - b * f) / (a * e - b * d)), y);
+
         br.close();
-        int[] nums = new int[6];
-
-        for (int i = 0; i < nums.length; i++)
-            nums[i] = Integer.parseInt(st.nextToken());
-
-        int x = 0;
-        int y = 0;
-
-        OUTER:
-        for (int i = -999; i < 1000; i++) {
-            for (int j = -999; j < 1000; j++) {
-                if (nums[0] * i + nums[1] * j == nums[2] && nums[3] * i + nums[4] * j == nums[5]) {
-                    x = i;
-                    y = j;
-                    break OUTER;
-                }
-            }
-        }
-        System.out.println(x + " " + y);
     }
 }
