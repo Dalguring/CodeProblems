@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -18,21 +18,21 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             int column = Integer.parseInt(st.nextToken());
             int row = Integer.parseInt(st.nextToken());
-            String[][] building = new String[row][column];
+            char[][] building = new char[row][column];
             int[][] dist = new int[row][column];
-            Queue<int[]> fireQueue = new LinkedList<>();
-            Queue<int[]> sangeunQueue = new LinkedList<>();
+            Queue<int[]> fireQueue = new ArrayDeque<>();
+            Queue<int[]> sangeunQueue = new ArrayDeque<>();
             boolean escaped = false;
 
             for (int j = 0; j < row; j++) {
                 String[] delim = br.readLine().split("");
 
                 for (int k = 0; k < column; k++) {
-                    building[j][k] = delim[k];
+                    building[j][k] = delim[k].charAt(0);
 
-                    if (building[j][k].equals("*")) {
+                    if (building[j][k] == '*') {
                         fireQueue.offer(new int[]{j, k});
-                    } else if (building[j][k].equals("@")) {
+                    } else if (building[j][k] == '@') {
                         sangeunQueue.offer(new int[]{j, k});
                         dist[j][k] = 1;
                     }
@@ -53,8 +53,8 @@ public class Main {
                         int nx = x + dx[k];
                         int ny = y + dy[k];
 
-                        if (nx >= 0 && ny >= 0 && nx < row && ny < column && (building[nx][ny].equals(".") || building[nx][ny].equals("@"))) {
-                            building[nx][ny] = "*";
+                        if (nx >= 0 && ny >= 0 && nx < row && ny < column && (building[nx][ny] == '.' || building[nx][ny] == '@')) {
+                            building[nx][ny] = '*';
                             fireQueue.offer(new int[]{nx, ny});
                         }
                     }
@@ -77,7 +77,7 @@ public class Main {
                         int nx = x + dx[k];
                         int ny = y + dy[k];
 
-                        if (nx >= 0 && ny >= 0 && nx < row && ny < column && building[nx][ny].equals(".") && dist[nx][ny] == 0) {
+                        if (nx >= 0 && ny >= 0 && nx < row && ny < column && building[nx][ny] == '.' && dist[nx][ny] == 0) {
                             sangeunQueue.offer(new int[]{nx, ny});
                             dist[nx][ny] = dist[x][y] + 1;
                         }
