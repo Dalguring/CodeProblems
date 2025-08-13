@@ -1,31 +1,30 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        int[] alphabets = new int['Z' - 'A' + 1];
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Map<Character, Integer> map = new HashMap<>();
-        String target = br.readLine().toUpperCase();
-        br.close();
+        char[] chars = br.readLine().toUpperCase().toCharArray();
 
-        for (char c : target.toCharArray())
-            map.put(c, map.getOrDefault(c, 0) + 1);
+        for (int i = 0; i < chars.length; i++) {
+            alphabets[chars[i] - 'A']++;
+        }
 
-        List<Character> keySet = new ArrayList<>(map.keySet());
+        int max = -1;
+        char c = '?';
 
-        keySet.sort(new Comparator<Character>() {
-            @Override
-            public int compare(Character o1, Character o2) {
-                return map.get(o2) - map.get(o1);
+        for (int i = 0; i < alphabets.length; i++) {
+            if (alphabets[i] > max) {
+                max = alphabets[i];
+                c = (char) (i + 'A');
+            } else if (alphabets[i] == max) {
+                c = '?';
             }
-        });
+        }
 
-        char answer;
-
-        if (map.size() > 1)
-            answer = map.get(keySet.get(0)).equals(map.get(keySet.get(1))) ? '?' : keySet.get(0);
-        else answer = keySet.get(0);
-
-        System.out.println(answer);
+        System.out.print(c);
+        br.close();
     }
 }
