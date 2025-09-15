@@ -1,35 +1,34 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int answer = 0;
+        boolean[] isPrime = new boolean[1001];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = false;
+        isPrime[1] = false;
 
-        while (st.hasMoreTokens()) {
-            int number = Integer.parseInt(st.nextToken());
-            boolean isPrime = true;
-            if (number == 1) {
-                continue;
-            }
-            
-            for (int i = 2; i <= Math.sqrt(number); i++) {
-                if (number % i == 0) {
-                    isPrime = false;
-                    break;
+        for (int i = 2; i <= Math.sqrt(isPrime.length); i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j < isPrime.length; j += i) {
+                    isPrime[j] = false;
                 }
-            }
-
-            if (isPrime) {
-                answer++;
             }
         }
 
-        System.out.println(answer);
+        int testcase = Integer.parseInt(br.readLine());
+        int count = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        while (st.hasMoreTokens()) {
+            count += isPrime[Integer.parseInt(st.nextToken())] ? 1 : 0;
+        }
+
+        System.out.print(count);
+        br.close();
     }
 }
-
