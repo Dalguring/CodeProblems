@@ -1,42 +1,47 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        final int MAX = 10000;
         int start = Integer.parseInt(br.readLine());
         int end = Integer.parseInt(br.readLine());
-        boolean[] primeArray = new boolean[end + 1];
-        int sum = 0;
-        int min = Integer.MAX_VALUE;
+        boolean[] isPrime = new boolean[MAX + 1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = isPrime[1] = false;
 
-        primeArray[0] = true;
-        primeArray[1] = true;
-
-        for (int i = 2; i < Math.sqrt(primeArray.length); i++) {
-            if (!primeArray[i]) {
-                for (int j = i * i; j < primeArray.length; j += i) {
-                    primeArray[j] = true;
+        for (int i = 2; i * i <= MAX; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= MAX; j += i) {
+                    isPrime[j] = false;
                 }
             }
         }
 
+        int sum = 0;
+        int min = Integer.MAX_VALUE;
+
         for (int i = start; i <= end; i++) {
-            if (!primeArray[i]) {
+            if (isPrime[i]) {
                 sum += i;
-                min = Math.min(i, min);
+                min = Math.min(min, i);
             }
         }
 
-        if (sum != 0) {
-            System.out.println(sum);
-            System.out.println(min);
-        } else {
-            System.out.println(-1);
+        StringBuilder sb = new StringBuilder();
+        if (sum == 0) {
+            System.out.print(-1);
+            return;
         }
-        
+
+        sb.append(sum).append("\n");
+        sb.append(min);
+
+        System.out.print(sb);
         br.close();
     }
 }
-
